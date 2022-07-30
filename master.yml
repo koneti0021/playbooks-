@@ -1,0 +1,6 @@
+---
+- name: this playbook setup apache2
+  hosts: dbservers
+  become: true
+  roles:
+  - setup_apache.role

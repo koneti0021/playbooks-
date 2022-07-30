@@ -1,0 +1,29 @@
+---
+- name: This is playbook install packages
+  hosts: dbservers
+  become: yes
+  tasks:
+  - name: Install httpd Redhat
+    yum:
+      name: httpd
+      state: installed
+  - name: starting  service
+    service:
+        name: httpd
+        state: started
+    ignore_errors:  yes
+  
+  - name: Install apache2 Debian
+    apt:
+      name: apache2
+      state: present
+    when: ansible_os_family == "Debian"
+  - name: Starting service
+    service:
+        name: apache2
+        state: started
+    when: ansible_os_family == "Debian"
+...
+
+
+

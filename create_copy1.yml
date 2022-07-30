@@ -1,0 +1,10 @@
+---
+- name: this is playbook copy file
+  hosts: all
+  become: yes
+  tasks:
+  - name: copy a file
+    copy:
+      src: /usr/bin/java
+      dest: /usr/bin
+...

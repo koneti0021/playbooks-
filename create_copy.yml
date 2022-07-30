@@ -1,0 +1,12 @@
+---
+- name: This palybook is a copy file
+  hosts: all
+  become: yes
+  tasks:
+  - name: Copy a file 
+    copy:
+      src: /home/ansadmin/index.html
+      dest: /home/ansadmin
+      mode: 0677  
+      owner: koneti
+... 

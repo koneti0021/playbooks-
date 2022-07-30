@@ -1,0 +1,8 @@
+---
+- name: this playbook running commands
+  hosts: dbservers
+  become: yes
+  tasks:
+  - name:
+    command:  yum install mysql -y && yum install git -y 
+

@@ -1,0 +1,9 @@
+---
+- name: this playbook test
+  hosts: deservers
+  become: yes
+  tasks:
+  - name: test task
+    user:
+      name: akash
+      state: present

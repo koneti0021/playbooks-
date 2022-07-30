@@ -1,0 +1,27 @@
+---
+- name: this playbook install tomcat
+  hosts: dbservers
+  become: yes
+  tasks:
+  - name: install java package
+    yum:
+     name: java
+     state: installed
+  - name: download tomcat
+    get_url:
+         url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz
+         dest: /opt
+  - name: Extract tomcat
+    unarchive:
+         src: /opt/apache-tomcat-8.5.81.tar.gz
+         dest: /opt
+         remote_src: yes
+  - name: Add to executeble permissons 
+    file:
+      path: /opt/apache-tomcat-8.5.81/bin/startup.sh
+      mode: 0777
+  - name: service start tomcat
+    shell: nohup ./startup.sh
+    args:
+      chdir: /opt/apache-tomcat-8.5.81/bin
+
